@@ -1,0 +1,135 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-3">
+      <label for="code">Code</label>
+      <input class="form-control" id="code" [(ngModel)]="searchByCode" type="search" aria-label="Search by code"
+             placeholder="Search by code">
+    </div>
+    <div class="col-3">
+      <label for="nameSearch">Name</label>
+      <input class="form-control" id="nameSearch" [(ngModel)]="searchByName" type="search" aria-label="Search by name"
+             placeholder="Search by name">
+    </div>
+    <div class="col-3">
+      <label for="email">Email</label>
+      <input class="form-control" id="email" [(ngModel)]="searchByEmail" type="search" aria-label="Search by email"
+             placeholder="Search by email">
+    </div>
+    <div class="col-3">
+      <button style="margin-top: 30px" (click)="getAllCustomer()" class="btn btn-outline-success">Search</button>
+    </div>
+  </div>
+  <form [formGroup]="searchInRangeForm" (ngSubmit)="getCustomerByBirthday()">
+    <div class="row mt-3">
+      <div class="col-3">
+        <label for="from">From</label>
+        <input class="form-control" id="from" formControlName="startDate" type="date" aria-label="Search by code"
+               placeholder="Search by code">
+        <p class="col alert alert-danger" role="alert"
+           *ngIf="searchInRangeForm.controls.startDate.hasError('required') && searchInRangeForm.controls.startDate.touched">
+          Can not be empty...!!!
+        </p>
+        <p class="col alert alert-danger" role="alert" *ngIf="searchInRangeForm.controls.startDate.hasError('pattern')">
+          Invalid format....
+        </p>
+      </div>
+
+      <div class="col-3">
+        <label for="to">To</label>
+        <input class="form-control" id="to" formControlName="endDate" type="date" aria-label="Search by name"
+               placeholder="Search by name">
+      </div>
+      <div class="col-3">
+        <button style="margin-top: 30px" [disabled]="!searchInRangeForm.valid" class="btn btn-outline-success">Search</button>
+      </div>
+    </div>
+  </form>
+  <!--  <div class="row mt-3">-->
+  <!--    <div class="col-6">-->
+  <!--      <input class="form-control" [(ngModel)]="searchByAll" type="search" placeholder="Search by all attributes"-->
+  <!--             aria-label="Search by all attributes">-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <div class="row mt-3">
+    <div class="col-8"></div>
+    <div class="col-4">
+      <button style="float: right" class="btn-primary ml-3" [routerLink]="['/create']"><i class="fas fa-plus"></i> Add
+        new customer
+      </button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <table class="mt-2 table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Name <i (click)="sort()" class="fas fa-sort ml-5"></i></th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Gender</th>
+        <th scope="col">ID Card</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Type</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customerList  | paginate: { id: 'listing_pagination',
+          itemsPerPage: 5,
+          currentPage: page,
+          totalItems: totalCustomers} ; index as i">
+        <td>{{ customer.code }}</td>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.birthday | date:'dd/MM/yyyy'  }}</td>
+        <td>{{ customer.gender }}</td>
+        <td>{{ customer.idCard }}</td>
+        <td>{{ customer.phone }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.address }}</td>
+        <td>{{ customer.typeOfCustomer.name}}</td>
+        <td>
+          <button [routerLink]="['/customer/edit', customer.id]" class="btn "><i style="color: orange;font-size: 1.5rem"
+                                                                                 class="far fa-edit"></i>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-muted" data-toggle="modal" data-target="#exampleModal"
+                  (click)="send(customer.id)">
+            <i style="color: red;font-size: 1.5rem" class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="clearfix">
+    <pagination-controls class="float-right" id="listing_pagination" maxSize="5" directionLinks="true"
+                         (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
+
+<!--______________modal______________-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cảnh báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có đồng ý xóa
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteCustomer()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

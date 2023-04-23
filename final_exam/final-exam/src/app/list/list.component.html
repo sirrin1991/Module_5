@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-10"></div>
+    <div class="col-2">
+      <label> <input class="form-control" placeholder="Tìm kiếm" readonly data-toggle="modal"
+                     data-target="#exampleModal">
+
+      </label>
+
+    </div>
+  </div>
+  <div class="row mt-3 ">
+    <div class="col-10"></div>
+    <div class="col-2">
+      <button class=" btn btn-primary " [routerLink]="['/create']"><i class="fas fa-plus"></i> Đăng tin mới</button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Post</th>
+        <th scope="col">Category</th>
+        <th scope="col">Date of post</th>
+        <th scope="col">Status</th>
+        <th scope="col" colspan="2"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let h of houseList">
+        <td>{{h.title}}</td>
+        <td>{{h.post}}</td>
+        <ng-container *ngFor="let c of categoryList ">
+          <td *ngIf="c.id == h.category">{{c.name}}</td>
+        </ng-container>
+        <td>{{h.dateOfPost}}</td>
+        <td>{{h.status}}</td>
+        <td>
+          <button [routerLink]="['/update', h.id]" class="btn "><i style="color: orange;font-size: 1.5rem" class="far fa-edit"></i></button>
+        </td>
+        <td>
+          <button (click)="sendId(h.id)" class="btn" data-toggle="modal" data-target="#exampleModal1">
+            <i style="color: red;font-size: 1.5rem" class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="!categoryList">
+        <td colspan="7" style="text-align: center;color: red">List is empty</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- modal-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label>Diện tích:
+            <select [(ngModel)]="area">
+              <option value=''>Tất cả</option>
+              <option value='100'> >= 100m2</option>
+              <option value='200'> >= 200m2</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Giá:
+            <select [(ngModel)]="price">
+              <option value=''>Tất cả</option>
+              <option value='500000000'> >= 500 triệu</option>
+              <option value='1000000000'> >= 1 tỷ</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Hướng:
+            <select [(ngModel)]="direction">
+              <option value=''>Tất cả</option>
+              <option value='Đông'>Đông</option>
+              <option value='Tây'>Tây</option>
+              <option value='Nam'>Nam</option>
+              <option value='Bắc'>Bắc</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Xem lại thông tin</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="search()">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--modal delete-->
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn xóa <span style="color: red">{{tempTitle}}</span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteHouse()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

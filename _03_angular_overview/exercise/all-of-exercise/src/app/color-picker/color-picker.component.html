@@ -1,0 +1,23 @@
+<div class="container">
+  <h3>Color Picker</h3>
+  <div class="row">
+    <div class="col-6 border" style="border: 1px">
+      <table>
+        <tr>
+          <td><label>Red:</label></td>
+          <td><input type="range" min="0" max="255" value="0" (change)="changeRed($event)" ></td>
+        </tr>
+        <tr>
+          <td><label>Green:</label></td>
+          <td><input type="range" min="0" max="255" value="0"  (change)="changeGreen($event)"></td>
+        </tr>
+        <tr>
+          <td><label>Blue:</label></td>
+          <td><input type="range" min="0" max="255" value="0"  (change)="changeBlue($event)"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4 border p-0 w-100" [style.backgroundColor]="color"></div>
+    <div class="col-2">Your color : {{color}}</div>
+  </div>
+</div>

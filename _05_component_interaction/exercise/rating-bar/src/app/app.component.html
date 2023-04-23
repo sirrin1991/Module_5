@@ -1,0 +1,12 @@
+<app-rating-bar [vote]="voteParent"></app-rating-bar>
+<p>Rate : <input type="number" min="1" max="5" [(ngModel)]="voteParent"> </p>
+
+<hr>
+<label for="count">Input time</label>
+<input type="number" id="count" [(ngModel)]="countParent">
+<app-countdown-timer [countChild]="countParent"></app-countdown-timer>
+<hr>
+
+<app-ratingbar></app-ratingbar>
+<hr>
+<app-countdown></app-countdown>

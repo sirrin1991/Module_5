@@ -1,0 +1,47 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Phone"
+    },
+    {
+      "id": 2,
+      "name": "Tivi"
+    },
+    {
+      "id": 3,
+      "name": "Bike"
+    },
+    {
+      "id": 4,
+      "name": "Car"
+    },
+    {
+      "id": 5,
+      "name": "Laptop"
+    }
+  ],
+  "productList": [
+    {
+      "id": 1,
+      "name": "IPhone 8Plus",
+      "category": 4,
+      "price": 500,
+      "description": "Like new"
+    },
+    {
+      "id": 2,
+      "name": "bbbb",
+      "category": 2,
+      "price": 500,
+      "description": "Like new"
+    },
+    {
+      "id": 3,
+      "name": "aaaa",
+      "category": 3,
+      "price": 500,
+      "description": "Like new"
+    }
+  ]
+}

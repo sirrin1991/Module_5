@@ -1,0 +1,41 @@
+[
+  {
+    "code": "NV-0001",
+    "name": "Nguyen Van A",
+    "birthday": "10/10/2000",
+    "idCard": "000000001",
+    "salary": "1000",
+    "phone": "0905050505",
+    "email": "ex@gmail.com",
+    "address": "Viet Nam",
+    "position": "Director",
+    "education": "Post-Graduate",
+    "department": "Administrative offices"
+  },
+  {
+    "code": "NV-0002",
+    "name": "Nguyen Van B",
+    "birthday": "10/10/2000",
+    "idCard": "000000001",
+    "salary": "1000",
+    "phone": "0905050505",
+    "email": "ex@gmail.com",
+    "address": "Viet Nam",
+    "position": "Director",
+    "education": "Post-Graduate",
+    "department": "Administrative offices"
+  },
+  {
+    "code": "NV-0003",
+    "name": "Nguyen Van C",
+    "birthday": "10/10/2000",
+    "idCard": "000000001",
+    "salary": "1000",
+    "phone": "0905050505",
+    "email": "ex@gmail.com",
+    "address": "Da Nang",
+    "position": "Director",
+    "education": "Post-Graduate",
+    "department": "Administrative offices"
+  }
+]

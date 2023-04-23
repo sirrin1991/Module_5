@@ -1,0 +1,195 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3 style="color: #046056">Đăng tin mới</h3>
+      <form [formGroup]="createForm" *ngIf="createForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="category">Danh mục</label>
+          <select formControlName="category" class="form-control" id="category">
+            <option disabled value="">-------</option>
+            <option *ngFor="let c of categoryList" [ngValue]="c">{{c.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="city">Vùng miền</label>
+          <select formControlName="city" class="form-control" id="city">
+            <option  disabled value="">--------</option>
+            <option *ngFor="let c of cityList" [ngValue]="c">{{c.name}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Ngày đăng</label>
+          <input type="date" formControlName="dateOfPost" id="date" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <span>Bạn đăng tin : </span>
+          <input class="ml-3" type="radio" id="sell"  formControlName="post" name="post" value="Cần bán">
+          <label class="mr-3" for="sell">Cần bán</label>
+          <input type="radio" id="buy"  formControlName="post" name="post" value="Cần mua">
+          <label for="buy">Cần mua</label>
+        </div>
+
+        <div class="form-group">
+          <span>Trạng thái : </span>
+          <input class="ml-3" type="radio" id="new"  formControlName="status" name="status" value="Mới">
+          <label class="mr-3" for="new">Mới</label>
+          <input type="radio" id="old"  formControlName="status" name="status" value="Đã sử dụng">
+          <label for="old">Đã sử dụng</label>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" formControlName="address" class="form-control" id="address" placeholder="Address">
+        </div>
+        <div>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.address.hasError('required') && createForm.controls.address.touched">
+            Không được để trống.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="area">Diện tích</label>
+          <input type="number" formControlName="area" id="area" class="form-control">
+        </div>
+        <div>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.area.hasError('required') && createForm.controls.area.touched">
+            Không được để trống.
+          </p>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.area.hasError('min')">
+            Phải >= 20 m <sup>2</sup>
+          </p>
+        </div>
+
+
+        <div class="form-group">
+          <label for="direction">Hướng</label>
+          <select formControlName="direction" class="form-control" id="direction">
+            <option disabled value="">--------</option>
+            <option value="Đông">Đông</option>
+            <option value="Tây">Tây</option>
+            <option value="Nam">Nam</option>
+            <option value="Bắc">Bắc</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="tilte">Tựa đề</label>
+          <input type="text" formControlName="title" id="tilte" class="form-control">
+        </div>
+        <div>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.title.hasError('required') && createForm.controls.title.touched">
+            Không được để trống.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="content">Nội dung</label>
+          <textarea formControlName="content" id="content" class="form-control"></textarea>
+        </div>
+        <div>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.content.hasError('required') && createForm.controls.content.touched">
+            Không được để trống.
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Giá</label>
+          <input type="number" formControlName="price" class="form-control" id="price">
+        </div>
+        <div>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.price.hasError('required') && createForm.controls.price.touched">
+            Không được để trống.
+          </p>
+          <p class="col alert alert-danger" role="alert"
+             *ngIf="createForm.controls.price.hasError('min')">
+            Phải >= 100 triệu VND.
+          </p>
+        </div>
+
+        <div class="clearfix">
+          <button type="button" (click)="sendInfor()" [disabled]="!createForm.valid" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">
+            Đăng tin
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận bài đăng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table *ngIf="tempHouse" class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Danh mục: </th>
+            <td>{{tempHouse.category.name}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Vùng miền: </th>
+            <td>{{tempHouse.city.name}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Ngày đăng: </th>
+            <td>{{tempHouse.dateOfPost}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Bài đăng: </th>
+            <td>{{tempHouse.post}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Trạng thái: </th>
+            <td>{{tempHouse.status}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Địa chỉ: </th>
+            <td>{{tempHouse.address}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Diện tích: </th>
+            <td>{{tempHouse.area}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Hướng: </th>
+            <td>{{tempHouse.direction}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Tiêu đề: </th>
+            <td>{{tempHouse.title}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Nội dung: </th>
+            <td>{{tempHouse.content}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Giá: </th>
+            <td>{{tempHouse.price}}</td>
+          </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chỉnh sửa thông tin </button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="submit()" >Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</div>
+

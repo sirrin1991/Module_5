@@ -1,0 +1,12 @@
+<h1>Tạo danh mục mới</h1>
+<form [formGroup]="categoryForm" (ngSubmit)="saveNewCategory()">
+  <table border="1px">
+    <tr>
+      <td>Tên danh mục:</td>
+      <td><input type="text" formControlName="name"></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align: right"><button type="submit">Tạo mới</button></td>
+    </tr>
+  </table>
+</form>

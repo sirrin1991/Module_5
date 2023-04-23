@@ -1,0 +1,21 @@
+<table>
+  <fieldset>
+    <legend>Parent</legend>
+    <tr>
+      <td><label for="parentName">Name : </label></td>
+      <td><input type="text" id="parentName" [(ngModel)]="parentName"></td>
+    </tr>
+    <tr>
+      <td><label for="parentEmail">Email : </label></td>
+      <td><input type="text" id="parentEmail" [(ngModel)]="parentEmail"></td>
+    </tr>
+    <tr>
+        <td><label for="parentPhone">Phone : </label></td>
+        <td><input type="text" id="parentPhone" [(ngModel)]="parentPhone"></td>
+    </tr>
+  </fieldset>
+
+</table>
+
+
+<app-name-card [name]="parentName" [email]="parentEmail" [phone]="parentPhone"></app-name-card>

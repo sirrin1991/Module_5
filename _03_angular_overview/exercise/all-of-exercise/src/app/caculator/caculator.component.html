@@ -1,0 +1,15 @@
+<h2 class="text-center text-black-50">Calculator</h2>
+<label for="fo">First operand:</label>
+<input type="number" id="fo" class="form-control" (change)="changeFirstOperand($event)">
+
+<label for="so">Second operand:</label>
+<input type="number" id="so" class="form-control" (change)="changeSecondOperand($event)">
+<br>
+<br>
+<input type="button" class="btn btn-primary" value="+" (click)="sum()">
+<input type="button" class="btn btn-primary" value="-" (click)="sub()">
+<input type="button" class="btn btn-primary" value="*" (click)="mul()">
+<input type="button" class="btn btn-primary" value="/" (click)="div()">
+<br>
+<br>
+<h2>Result : {{result}}</h2>

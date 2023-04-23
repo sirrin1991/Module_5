@@ -1,0 +1,121 @@
+{
+  "customers": [
+    {
+      "id": 10,
+      "code": "KH-2232",
+      "name": "Nguyen Thanh Cong",
+      "phone": "0909999999",
+      "idCard": "999888778",
+      "birthday": "2022-07-12",
+      "typeOfCustomer": {
+        "id": 4,
+        "name": "Silver"
+      },
+      "address": "Đà Nẵng",
+      "gender": "Female",
+      "email": "sirrin1009@gmail.com"
+    }
+  ],
+  "customertypes": [
+    {
+      "id": 1,
+      "name": "Diamond"
+    },
+    {
+      "id": 2,
+      "name": "Platinum"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Silver"
+    },
+    {
+      "id": 5,
+      "name": "Member"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "code": "NV-0001",
+      "name": "Nguyen Thanh Cong",
+      "birthday": "1991-09-10",
+      "idCard": "201646779",
+      "salary": 1000,
+      "phone": "0909090911",
+      "email": "thanhcong@gmail.com",
+      "address": "Đà Nẵng",
+      "position": 1,
+      "education": 1,
+      "department": 1
+    },
+    {
+      "id": 2,
+      "code": "NV-0002",
+      "name": "Nguyen Duc Hau",
+      "birthday": "1998-02-14",
+      "idCard": "201202203",
+      "salary": 999,
+      "phone": "0909090922",
+      "email": "duchau@gmail.com",
+      "address": "Đà Nẵng",
+      "position": 2,
+      "education": 2,
+      "department": 2
+    },
+    {
+      "id": 3,
+      "code": "NV-0003",
+      "name": "Le Duc Sang",
+      "birthday": "1992-09-09",
+      "idCard": "999999999",
+      "salary": 999,
+      "phone": "0909999999",
+      "email": "sanglevippro@gmail.com",
+      "address": "Quang Nam",
+      "position": 3,
+      "education": 3,
+      "department": 3
+    },
+    {
+      "id": 4,
+      "code": "NV-0004",
+      "name": "Tran Hong Gia Dong",
+      "birthday": "1994-04-04",
+      "idCard": "444333222",
+      "salary": 998,
+      "phone": "0909444444",
+      "email": "thgiadong@gmail.com",
+      "address": "Da Nang",
+      "position": 4,
+      "education": 4,
+      "department": 4
+    }
+  ],
+  "position": [
+    {
+      "id": 1,
+      "name": "Director"
+    },
+    {
+      "id": 2,
+      "name": "Manager"
+    },
+    {
+      "id": 3,
+      "name": "Supervisor"
+    },
+    {
+      "id": 4,
+      "name": "Receptionist"
+    },
+    {
+      "id": 5,
+      "name": "Housekeeper"
+    }
+  ]
+}

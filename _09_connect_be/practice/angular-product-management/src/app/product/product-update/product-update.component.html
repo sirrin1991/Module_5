@@ -1,0 +1,34 @@
+<h1>Sửa thông tin sản phẩm</h1>
+<form [formGroup]="productForm" *ngIf="productForm" (ngSubmit)="updateProduct()">
+  <table>
+
+    <tr>
+      <td hidden>
+        <input formControlName="id">
+      </td>
+      <td>Tên sản phẩm:</td>
+      <td><input type="text" formControlName="name" ></td>
+    </tr>
+    <tr>
+      <td>Loại sản phẩm:</td>
+      <td>
+        <select formControlName="category" >
+          <option [selected]="c.id === product.category" *ngFor="let c of categories" [ngValue]="c.id">{{c.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Giá sản phẩm</td>
+      <td><input type="number" formControlName="price"></td>
+    </tr>
+    <tr>
+      <td>Mô tả về sản phẩm</td>
+      <td><input type="text" formControlName="description" ></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Submit</button></td>
+    </tr>
+  </table>
+</form>
+

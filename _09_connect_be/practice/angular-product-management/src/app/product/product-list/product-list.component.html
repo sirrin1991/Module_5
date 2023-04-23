@@ -1,0 +1,29 @@
+<h1>Danh sách sản phẩm</h1>
+<table border="1px">
+  <tr>
+    <td>STT</td>
+    <td>Tên <button (click)="sort()">a</button> </td>
+    <td>Loại</td>
+    <td>Giá</td>
+    <td>Mô tả</td>
+    <td>Sửa</td>
+    <td>Xóa</td>
+  </tr>
+  <tr *ngFor="let product of products; index as i">
+    <td>{{i + 1}}</td>
+    <td>{{product.name}}</td>
+
+    <ng-container *ngFor="let category of categories">
+    <td *ngIf="product.category == category.id">{{category.name}}</td>
+    </ng-container>
+
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+    <td>
+      <button [routerLink]="['/product/edit/', product.id]">Sửa</button>
+    </td>
+    <td>
+      <button (click)="delete(product.id)">Xóa</button>
+    </td>
+  </tr>
+</table>

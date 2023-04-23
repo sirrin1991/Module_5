@@ -1,0 +1,66 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-6">
+      <input class="form-control" [(ngModel)]="searchValue" type="search" placeholder="Search by name"
+             aria-label="Search by name">
+    </div>
+    <div class="col-6"></div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-6">
+      <input class="form-control" [(ngModel)]="term" type="search" placeholder="Search by all attributes">
+    </div>
+  </div>
+  <div class="row">
+    <table class="mt-2 table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">ID Card</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Position</th>
+        <th scope="col">Education</th>
+        <th scope="col">Department</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employees |filter:term | searchByName: searchValue | paginate: { id: 'listing_pagination',
+        itemsPerPage: 2,
+        currentPage: page,
+        totalItems: totalEmployees
+        } ">
+        <td>{{ employee.code }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.birthday }}</td>
+        <td>{{ employee.idCard }}</td>
+        <td>{{ employee.salary}}</td>
+        <td>{{ employee.phone }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.address }}</td>
+        <td>{{ employee.position }}</td>
+        <td>{{ employee.education }}</td>
+        <td>{{ employee.department }}</td>
+        <td>
+          <a href="#" role="button" class="btn btn-warning"><i style="color: white" class="far fa-edit"></i></a>
+        </td>
+        <td>
+          <a href="#" role="button" class="btn btn-danger"><i style="color: white" class="fas fa-trash-alt"></i></a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="clearfix">
+    <pagination-controls class="float-right" id="listing_pagination" maxSize="5" directionLinks="true"
+                         (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+
+</div>
